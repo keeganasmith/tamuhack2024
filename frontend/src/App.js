@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <div className="App">
-        <GoogleOAuthProvider clientId="217156761187-nd7snmr4dgfbgrailbchl9357st6drme.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
           <GmailLogin />
         </GoogleOAuthProvider>
       </div>
