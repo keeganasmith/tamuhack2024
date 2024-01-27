@@ -3,17 +3,17 @@ import { GoogleLogin } from '@react-oauth/google';
 
 function GmailLogin () {
 
-    const success = (logRes) => {
-
-    }
-
-    const error = (logErr) => {
-
-    }
-
     return (
         <div>
-            <GoogleLogin onSuccess={success} onError={error}/>
+            <h1>Google Login for Gmail</h1>
+            <GoogleLogin
+            onSuccess={credentialResponse => {
+              console.log(credentialResponse);
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
         </div>
     );
 }
