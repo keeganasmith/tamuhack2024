@@ -14,7 +14,7 @@ def url_scan(content): #responds with a json containing information about given 
 
     if len(url_list) < 1:
         return {
-                "domain":"No links in Email",
+                "domain": "No links in Email",
                 "risk_score": ""
                 }
     url_hold = url_list[0]
@@ -42,7 +42,7 @@ def url_scan(content): #responds with a json containing information about given 
         return link_info
     else:
         link_info = {
-            "domain":url_hold,
+            "domain": url_hold,
             "risk_score": "Link was unable to be read"
         }
         return link_info
