@@ -1,15 +1,17 @@
 import React, { useState, Component } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import { useNavigate  } from 'react-router-dom';
 
 function GmailLogin( setUser ) {
-
+    const history = useNavigate ();
     const handleLogin = useGoogleLogin({
         onSuccess: (code) => {
             console.log("Login: ", code); // to debug
 
             axios.post() // once the api endpoint is created, send auth code to flask server
             .then(res => res.data.token) // depending on json, may need to redo
+            history("/email");
         },
         onError: () => {
             console.error();
