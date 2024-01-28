@@ -65,8 +65,8 @@ const EmailScreen = ({ emails }) => {
           {Array.isArray(emails) && emails.length > 0 && emails.map((email) => (
             <li key={email.id} onClick={() => handleEmailClick(email)}>
               <div>
-                <h3>from: {email.from}</h3>
-                <p>subject: {email.subject}</p>
+                <h3>From: {email.from}</h3>
+                <p>Subject: {email.subject}</p>
               </div>
             </li>
           ))}
@@ -89,8 +89,9 @@ const EmailScreen = ({ emails }) => {
           <h3>Sender Checker</h3>
           {selectedEmail ? (
           <div>
-            <p>sender: {selectedEmail.from}</p>
-            <p>fraud score (0 is lowest, 100 is highest): {selectedSenderInfo && selectedSenderInfo.fraud_score}</p>
+            <p>Sender: {selectedEmail.from}</p>
+            <p>Fraud Score (0 is lowest, 100 is highest): {selectedSenderInfo && selectedSenderInfo.fraud_score}</p>
+            <p>Leaked in database breach?: {selectedSenderInfo && selectedSenderInfo.leaked}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
@@ -101,8 +102,8 @@ const EmailScreen = ({ emails }) => {
           <h3>Url Checker</h3>
           {selectedEmail ? (
           <div>
-            <p>domain: {selectedURLInfo.domain}</p>
-            <p>risk score (0 is lowest, 100 is highest): {selectedURLInfo && selectedURLInfo.risk_score}</p>
+            <p>Domain: {selectedURLInfo.domain}</p>
+            <p>Risk Score (0 is lowest, 100 is highest): {selectedURLInfo && selectedURLInfo.risk_score}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
@@ -113,7 +114,7 @@ const EmailScreen = ({ emails }) => {
           <h3>Content Checker</h3>
           {selectedEmail ? (
           <div>
-            <p>email analyzer rating: {selectedContentInfo && selectedContentInfo}</p>
+            <p>Email Analyzer Rating: {selectedContentInfo && selectedContentInfo}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
