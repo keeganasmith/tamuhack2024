@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request
 from google_client.google_class import Google_Class
 import traceback
@@ -12,12 +12,19 @@ CORS(app)
 def index():
     return 'Hello, World!'
 
-@app.route('/api/get_emails', methods = ["POST"])
+@app.route('/api/get_emails', methods=["POST", "OPTIONS"])
 def get_emails():
+    if request.method == 'OPTIONS':
+        response = jsonify({'status': 'success'})
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+        response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
+        return response, 200
+
     try:
         info = request.json
         auth_token = info.get("token", "")
-        google_client = Google_Class(token = auth_token)
+        google_client = Google_Class(token=auth_token)
         result = google_client.get_email_htmls()
         return result, 200
     except Exception as e:
