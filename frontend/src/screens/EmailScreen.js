@@ -40,7 +40,7 @@ const EmailScreen = () => {
           {emails.map((email) => (
             <li key={email.id} onClick={() => handleEmailClick(email)}>
               <div>
-                <h3>{email.subject}</h3>
+                <h4>{email.subject}</h4>
                 <p>{email.content.substring(0, 50)}...</p>
               </div>
             </li>
