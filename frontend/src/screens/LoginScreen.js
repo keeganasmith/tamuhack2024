@@ -11,7 +11,6 @@ const LoginScreen = ({ setEmails }) => {
           <div className = "info-container">
             <div className = "text-container">
               <h1>Welcome!</h1>
-              <h1>Sign in to get started!</h1>
             </div>
             <div className = "gmail-container">
               <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
