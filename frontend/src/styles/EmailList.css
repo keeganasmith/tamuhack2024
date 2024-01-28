@@ -1,0 +1,38 @@
+/* Add this CSS to your stylesheets (EmailList.css) */
+
+.email-list-container {
+  display: flex;
+  height: 100vh;
+  color: #232323;
+}
+
+.email-list-tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 150px; /* Adjust the width as needed */
+  padding: 50px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #232323;
+}
+
+.email-list-tabs button {
+  width: 100%;
+  padding: 12px; /* Increase padding for a larger button */
+  margin-bottom: 20px; /* Adjust the margin-bottom to control spacing */
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 8px; /* Add rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.email-list-tabs button.selected {
+  background-color: #0056b3; /* Darker blue for selected state */
+}
+
+.email-list-tabs button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
