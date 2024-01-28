@@ -1,9 +1,13 @@
 // src/components/EmailScreen.js
 import React, { useState } from 'react';
 import parse from 'html-react-parser';
+import { useNavigate  } from 'react-router-dom';
 import '../styles/EmailScreen.css'; // Import the CSS file
 
 const EmailScreen = () => {
+
+  const history = useNavigate();
+
   // Sample data for emails
   const initialEmails = [
     { id: 1, subject: 'First Email', content: 'Content of the first email.' },
@@ -18,8 +22,18 @@ const EmailScreen = () => {
     setSelectedEmail(email);
   };
 
+  const handleSignOut = () => {
+    // Implement your sign-out logic here
+    console.log('Signing out...');
+    history("/");
+  };
+
   return (
     <div className="email-screen">
+      <div className="sign-out-button" onClick={handleSignOut}>
+        <button>Sign Out</button>
+      </div>
+
       <div className="email-list">
         <h2>Emails</h2>
         <ul>
