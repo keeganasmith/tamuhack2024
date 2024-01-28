@@ -36,7 +36,10 @@ def scan_url():
 @app.route('/api/scan_email_content', methods=["POST"])
 def scan_email_content():
     data_from_json = request.get_json()
-    return email_content_scan(data_from_json["content"])
+    print(data_from_json)
+    thing = email_content_scan(data_from_json['content'])
+    print(thing)
+    return thing
 
 @app.route('/api/get_emails', methods=["POST", "OPTIONS"])
 def get_emails():
