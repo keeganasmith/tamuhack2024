@@ -22,15 +22,6 @@
   .login-button:active {
     background-color: #004080; /* active:bg-blue-800 */
   }
-
-  .text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 60vh; /* Adjust the height based on your preference */
-  }
-
   .login-container {
     background-color: #883985;
     height: 100vh;
@@ -51,10 +42,33 @@
   }
 
   .gmail-container {
+    width: 100%;
+    height: 120px; /* Set a height or adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info-container {
     position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 20px;
-      background-color: #883985;
-  } 
+    top: 25%;
+    left: 25%;
+    background-color: #642a62;
+    height: 50%; /* Adjust the height as needed */
+    width: 50%;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #f3a69c;
+  }
+
+  .text-container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
