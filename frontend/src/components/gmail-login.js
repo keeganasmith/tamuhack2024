@@ -22,8 +22,8 @@ function GmailLogin({ setEmails }) {
               console.log(response.data); // Assuming the response contains emails
       
               // Update the state with the received emails
-              //setEmails(response.data);
-              setEmails(temp_email);
+              setEmails(response.data);
+              //setEmails(temp_email);
       
               // Navigate to the "/email" route
               navigate("/email");

@@ -35,7 +35,7 @@ const EmailScreen = ({ emails }) => {
           {Array.isArray(emails) && emails.length > 0 && emails.map((email) => (
             <li key={email.id} onClick={() => handleEmailClick(email)}>
               <div>
-                <h4>from: {email.sender}</h4>
+                <h4>from: {email.from}</h4>
                 <p>subject: {email.subject}</p>
               </div>
             </li>
@@ -46,7 +46,7 @@ const EmailScreen = ({ emails }) => {
       <div className="email-content">
         {selectedEmail ? (
           <div>
-            <p>{selectedEmail.content}</p>
+            <p>{selectedEmail.body}</p>
           </div>
         ) : (
           <p>Select an email to view its content.</p>
@@ -58,7 +58,8 @@ const EmailScreen = ({ emails }) => {
           <h2>Sender Checker</h2>
           {selectedEmail ? (
           <div>
-            <p>aldjf</p>
+            <h2>sender: {selectedEmail.from}</h2>
+            <h2>fraud score (0 is lowest, 100 is highest): {0}</h2>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
@@ -69,7 +70,8 @@ const EmailScreen = ({ emails }) => {
           <h2>Url Checker</h2>
           {selectedEmail ? (
           <div>
-            <p>aldjf</p>
+            <h2>domain: {"link"}</h2>
+            <h2>risk score (0 is lowest, 100 is highest): {50}</h2>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
@@ -80,7 +82,7 @@ const EmailScreen = ({ emails }) => {
           <h2>Content Checker</h2>
           {selectedEmail ? (
           <div>
-            <p>aldjf</p>
+            <h2>email analyzer rating: website safe</h2>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
