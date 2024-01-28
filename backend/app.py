@@ -43,9 +43,9 @@ def scan_url(url):
     return url_scan(url)
 
 @app.route('/api/scan_sender/<email_address>', methods=["GET"])
-def scan_url(email_address):
+def scan_sender(email_address):
     return email_address_scan(email_address)
 
 @app.route('/api/scan_email_content/<email>', methods=["GET"])
-def scan_url(email):
+def scan_email_content(email):
     return email_content_scan(email)
