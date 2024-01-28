@@ -1,9 +1,14 @@
-from api_key import ipqualityscore_key, openai_key
 import requests
 from openai import OpenAI
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+
 def url_scan(website_url): #responds with a json containing information about given url
-    url = f"https://www.ipqualityscore.com/api/json/url/{ipqualityscore_key}/{website_url}"
+    url = f"https://www.ipqualityscore.com/api/json/url/{os.getenv('IPQUALITYSCORE_KEY')}/{website_url}"
 
     response = requests.get(url)
 
@@ -24,14 +29,13 @@ def url_scan(website_url): #responds with a json containing information about gi
         return response.status_code
 
 def email_address_scan(email_address): # responds with a json containing information about given email address
-    url = f"https://www.ipqualityscore.com/api/json/email/{ipqualityscore_key}/{email_address}"
+    url = f"https://www.ipqualityscore.com/api/json/email/{os.getenv('IPQUALITYSCORE_KEY')}/{email_address}"
 
     response = requests.get(url)
 
 
     if response.status_code == 200:
         response = response.json()
-        print(response)
         email_address_info = {
             "sanitized_email": response["sanitized_email"],
             "valid": response["valid"],
@@ -47,7 +51,7 @@ def email_address_scan(email_address): # responds with a json containing informa
 
 
 def email_content_scan(content): # returns either Phishing attempt or Legitimate email after scanning email
-    client = OpenAI(api_key=openai_key)
+    client = OpenAI()
 
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
@@ -58,4 +62,3 @@ def email_content_scan(content): # returns either Phishing attempt or Legitimate
     )
 
     print(completion.choices[0].message)
-
