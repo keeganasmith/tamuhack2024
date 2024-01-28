@@ -10,8 +10,6 @@ const EmailScreen = ({ emails }) => {
 
   // Sample data for emails
 
-  console.log(emails);
-
   //const [emails, setEmails] = useState(initialEmails);
   const [selectedEmail, setSelectedEmail] = useState(null);
 
@@ -37,8 +35,8 @@ const EmailScreen = ({ emails }) => {
           {Array.isArray(emails) && emails.length > 0 && emails.map((email) => (
             <li key={email.id} onClick={() => handleEmailClick(email)}>
               <div>
-                <h4>{email.subject}</h4>
-                <p>{email.content}</p>
+                <h4>from: {email.sender}</h4>
+                <p>subject: {email.subject}</p>
               </div>
             </li>
           ))}
@@ -53,6 +51,41 @@ const EmailScreen = ({ emails }) => {
         ) : (
           <p>Select an email to view its content.</p>
         )}
+      </div>
+
+      <div className="email-checker">
+        <section>
+          <h2>Sender Checker</h2>
+          {selectedEmail ? (
+          <div>
+            <p>aldjf</p>
+          </div>
+        ) : (
+          <p>Select an email to analyze.</p>
+        )}
+        </section>
+
+        <section>
+          <h2>Url Checker</h2>
+          {selectedEmail ? (
+          <div>
+            <p>aldjf</p>
+          </div>
+        ) : (
+          <p>Select an email to analyze.</p>
+        )}
+        </section>
+
+        <section>
+          <h2>Content Checker</h2>
+          {selectedEmail ? (
+          <div>
+            <p>aldjf</p>
+          </div>
+        ) : (
+          <p>Select an email to analyze.</p>
+        )}
+        </section>
       </div>
     </div>
   );
