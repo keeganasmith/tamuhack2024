@@ -103,6 +103,8 @@ const EmailScreen = ({ emails }) => {
           <div>
             <p>domain: {selectedURLInfo.domain}</p>
             <p>risk score (0 is lowest, 100 is highest): {selectedURLInfo}</p>
+            <p>domain:</p>
+            <p>risk score (0 is lowest, 100 is highest): {selectedURLInfo && selectedURLInfo.risk_score}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
