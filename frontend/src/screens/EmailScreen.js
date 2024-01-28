@@ -75,7 +75,7 @@ const EmailScreen = ({ emails }) => {
             <p>{selectedEmail.body}</p>
           </div>
         ) : (
-          <p>Select an email to view its content.</p>
+          <p style={{ color: 'white'}}>Select an email to view its content.</p>
         )}
       </div>
 
