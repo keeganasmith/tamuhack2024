@@ -1,7 +1,8 @@
-from api_key import ipqualityscore_key
+from api_key import ipqualityscore_key, openai_key
 import requests
+from openai import OpenAI
 
-def url_scan(website_url):
+def url_scan(website_url): #responds with a json containing information about given url
     url = f"https://www.ipqualityscore.com/api/json/url/{ipqualityscore_key}/{website_url}"
 
     response = requests.get(url)
@@ -22,7 +23,7 @@ def url_scan(website_url):
     else:
         return response.status_code
 
-def email_address_scan(email_address):
+def email_address_scan(email_address): # responds with a json containing information about given email address
     url = f"https://www.ipqualityscore.com/api/json/email/{ipqualityscore_key}/{email_address}"
 
     response = requests.get(url)
@@ -44,4 +45,17 @@ def email_address_scan(email_address):
     else:
         return response.status_code
 
-print(email_address_scan("willheeney03@gmail.com"))
+
+def email_content_scan(content): # returns either Phishing attempt or Legitimate email after scanning email
+    client = OpenAI(api_key=openai_key)
+
+    completion = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "You are an assistant who is tasked with determining whether an email is a phishing attempt or legitimate. Please respond to prompts with Phishing attempt or Legitimate email."},
+        {"role": "user", "content": content}
+    ]
+    )
+
+    print(completion.choices[0].message)
+
