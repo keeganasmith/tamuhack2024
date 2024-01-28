@@ -9,7 +9,7 @@ function GmailLogin( setUser ) {
         onSuccess: (code) => {
             console.log("Login: ", code); // to debug
 
-            axios.post("https://phishnetasdf.onrender.com/api/get_emails/", {"token" : code.access_token}) // once the api endpoint is created, send auth code to flask server
+            axios.post("https://phishnetasdf.onrender.com/api/get_emails", {"token" : code.access_token}) // once the api endpoint is created, send auth code to flask server
             history("/email");
         },
         onError: () => {
