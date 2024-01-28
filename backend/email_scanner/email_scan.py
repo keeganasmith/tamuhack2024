@@ -13,7 +13,11 @@ def url_scan(content): #responds with a json containing information about given 
     url_list = re.findall("(?P<url>https?://[^\s'\"]+)", content)
 
     if len(url_list) < 1:
-        return "No links in email"
+        return {
+                "domain":"No links in Email",
+                "risk_score": ""
+                }
+    url_hold = url_list[0]
     url_list[0] = url_list[0].replace("https://", "").replace("http://", "")
     url = f"https://www.ipqualityscore.com/api/json/url/{os.getenv('IPQUALITYSCORE_KEY')}/{url_list[0]}"
     print(url)
@@ -35,7 +39,11 @@ def url_scan(content): #responds with a json containing information about given 
         }
         return link_info
     else:
-        return "Links were unable to be read"
+        link_info = {
+            "domain":url_hold,
+            "risk_score": "Link was unable to be read"
+        }
+        return link_info
 
 def email_address_scan(email_address): # responds with a json containing information about given email address
     url = f"https://www.ipqualityscore.com/api/json/email/{os.getenv('IPQUALITYSCORE_KEY')}/{email_address}"
