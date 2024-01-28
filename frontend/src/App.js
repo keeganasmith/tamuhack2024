@@ -18,8 +18,8 @@ const App = () => {
   return (
     <div>
       <header className='App-header'>
-        <img src="./assets/whitelogo.png" />
-        <h1 style={{ color: 'black', fontSize: 35}}>Phish Net</h1>
+        {/* <img src="/assets/blacklogo.png" alt="Phish Net logo"/> */} {/* image is not rendering */}
+        <h1 style={{ color: 'black', fontSize: 35, fontFamily: 'Consolas, monospace', padding: 10}}>Phish Net</h1>
       </header>
       <Router>
         <Routes>
