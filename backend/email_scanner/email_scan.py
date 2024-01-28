@@ -62,3 +62,5 @@ def email_content_scan(content): # returns either Phishing attempt or Legitimate
     )
 
     print(completion.choices[0].message)
+    return completion.choices[0].message
+

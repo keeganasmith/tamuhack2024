@@ -1,8 +1,10 @@
 // src/components/EmailScreen.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
 import { useNavigate  } from 'react-router-dom';
 import '../styles/EmailScreen.css'; // Import the CSS file
+import axios from 'axios';
+
 
 const EmailScreen = ({ emails }) => {
 
@@ -12,6 +14,28 @@ const EmailScreen = ({ emails }) => {
 
   //const [emails, setEmails] = useState(initialEmails);
   const [selectedEmail, setSelectedEmail] = useState(null);
+
+  const [selectedSenderInfo, setSelectedSenderInfo] = useState(null);
+  const [selectedContentInfo, setSelectedContentInfo] = useState(null);
+
+  useEffect(() => {
+    if (selectedEmail) {
+      const fetchData = async () => {
+        try {
+          //const response_link = await axios.get(`https://phishnetasdf.onrender.com/api/scan_url/${selectedEmail.link....}`);
+          const response_sender = await axios.get(`https://phishnetasdf.onrender.com/api/scan_sender/${selectedEmail.from.slice(1, -1)}`)
+          setSelectedSenderInfo(response_sender.data);
+
+          const response_content = await axios.get(`https://phishnetasdf.onrender.com/api/scan_email_content/${selectedEmail.body}`)
+          setSelectedContentInfo(response_content.data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
+      fetchData();
+    }
+  }, [selectedEmail]);
 
   const handleEmailClick = (email) => {
     setSelectedEmail(email);
@@ -59,7 +83,7 @@ const EmailScreen = ({ emails }) => {
           {selectedEmail ? (
           <div>
             <h2>sender: {selectedEmail.from}</h2>
-            <h2>fraud score (0 is lowest, 100 is highest): {0}</h2>
+            <h2>fraud score (0 is lowest, 100 is highest): {selectedSenderInfo && selectedSenderInfo.fraud_score}</h2>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
@@ -82,7 +106,7 @@ const EmailScreen = ({ emails }) => {
           <h2>Content Checker</h2>
           {selectedEmail ? (
           <div>
-            <h2>email analyzer rating: website safe</h2>
+            <h2>email analyzer rating: {selectedContentInfo && selectedContentInfo.data}</h2>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
