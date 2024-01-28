@@ -53,17 +53,8 @@
   .gmail-container {
     position: absolute;
       top: 50%;
-      left: 40%;
+      left: 50%;
       transform: translate(-50%, -50%);
       padding: 20px;
       background-color: #883985;
-  }
-
-  .linkedin-container {
-    position: absolute;
-      top: 50%;
-      left: 60%;
-      transform: translate(-50%, -50%);
-      padding: 20px;
-      background-color: #883985;
-  }
+  } 
