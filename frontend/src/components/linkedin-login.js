@@ -5,7 +5,7 @@ function LinkedInLogin() {
 
     console.log("linkedin client id: ", process.env.REACT_APP_LINKEDIN_CLIENT_ID)
 
-    const {handleLogin} =
+    const handleLogin =
         useLinkedIn({
             clientId: process.env.REACT_APP_LINKEDIN_CLIENT_ID,
             redirectUri: `${window.location.origin}/linkedin`,

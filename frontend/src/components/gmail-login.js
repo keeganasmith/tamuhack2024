@@ -16,7 +16,7 @@ function GmailLogin( setUser ) {
         onError: () => {
             console.error();
         },
-        flow: 'auth-code'
+        flow: 'implicit'
     });
 
     return (

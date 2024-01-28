@@ -1,7 +1,7 @@
 import GmailLogin from '../components/gmail-login';
 import LinkedInLogin from '../components/linkedin-login';
 import { useNavigate  } from 'react-router-dom';
-import "../styles/App.css";
+// import "../styles/App.css";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const LoginScreen = () => {
