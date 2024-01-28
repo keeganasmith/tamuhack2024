@@ -16,7 +16,7 @@ def index():
 def get_emails():
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'success'})
-        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+        response.headers.add('Access-Control-Allow-Origin', '*')
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
         response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
         return response, 200
