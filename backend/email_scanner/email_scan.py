@@ -4,7 +4,7 @@ from openai import OpenAI
 
 from dotenv import load_dotenv
 import os
-
+import urllib
 load_dotenv()
 
 
@@ -14,11 +14,13 @@ def url_scan(content): #responds with a json containing information about given 
 
     if len(url_list) < 1:
         return "No links in email"
-    url_list[0] = url_list[0].replace("https://", "").replace("http://", "")
-    url = f"https://www.ipqualityscore.com/api/json/url/{os.getenv('IPQUALITYSCORE_KEY')}/{url_list[0]}"
-    print(url)
+    api_key = os.getenv('IPQUALITYSCORE_KEY')
+    base_url = "https://www.ipqualityscore.com/api/json/url"
+    url_list[0] = urllib.parse.quote_plus(url_list[0])
+    url = f"{base_url}/{api_key}/{url_list[0]}"
 
     response = requests.get(url)
+
 
     if response.status_code == 200:
         response = response.json()
@@ -72,4 +74,3 @@ def email_content_scan(content): # returns either Phishing attempt or Legitimate
 
     return completion.choices[0].message.content
 
-print(url_scan("https://google.com"))
