@@ -4,18 +4,15 @@ import parse from 'html-react-parser';
 import { useNavigate  } from 'react-router-dom';
 import '../styles/EmailScreen.css'; // Import the CSS file
 
-const EmailScreen = () => {
+const EmailScreen = ({ emails }) => {
 
   const history = useNavigate();
 
   // Sample data for emails
-  const initialEmails = [
-    { id: 1, subject: 'First Email', content: 'Content of the first email.' },
-    { id: 2, subject: 'Second Email', content: 'Content of the second email.' },
-    // Add more emails as needed
-  ];
 
-  const [emails, setEmails] = useState(initialEmails);
+  console.log(emails);
+
+  //const [emails, setEmails] = useState(initialEmails);
   const [selectedEmail, setSelectedEmail] = useState(null);
 
   const handleEmailClick = (email) => {
@@ -37,11 +34,11 @@ const EmailScreen = () => {
       <div className="email-list">
         <h2>Emails</h2>
         <ul>
-          {emails.map((email) => (
+          {Array.isArray(emails) && emails.length > 0 && emails.map((email) => (
             <li key={email.id} onClick={() => handleEmailClick(email)}>
               <div>
                 <h4>{email.subject}</h4>
-                <p>{email.content.substring(0, 50)}...</p>
+                <p>{email.content}</p>
               </div>
             </li>
           ))}

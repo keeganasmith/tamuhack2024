@@ -3,14 +3,32 @@ import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
 
-function GmailLogin( setUser ) {
-    const history = useNavigate ();
+function GmailLogin({ setEmails }) {
+    const navigate = useNavigate();
     const handleLogin = useGoogleLogin({
-        onSuccess: (code) => {
-            console.log("Login: ", code); // to debug
-
-            axios.post("https://phishnetasdf.onrender.com/api/get_emails", {"token" : code.access_token}) // once the api endpoint is created, send auth code to flask server
-            history("/email");
+        onSuccess: async (code) => {
+            console.log("Login: ", code);
+      
+            const temp_email = [
+              { id: 1, subject: 'DOES IT WORK ??', content: 'WORK WORK WORK' },
+              { id: 2, subject: 'Second Email', content: 'Content of the second email.' },
+              // Add more emails as needed
+            ];
+      
+            try {
+              // Make an asynchronous API call using Axios
+              const response = await axios.post("https://phishnetasdf.onrender.com/api/get_emails", { "token": code.access_token });
+      
+              console.log(response.data); // Assuming the response contains emails
+      
+              // Update the state with the received emails
+              setEmails(response.data);
+      
+              // Navigate to the "/email" route
+              navigate("/email");
+            } catch (error) {
+              console.error('Error fetching emails:', error);
+            }
         },
         onError: () => {
             console.error();
