@@ -84,7 +84,7 @@
     flex: 2;
     padding: 20px;
     margin-top: 30px; /* Add margin-top to lower the email content */
-    max-width: 600px;
+    max-width: 40%;
   }
   
   .email-content h2 {
@@ -97,6 +97,9 @@
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-wrap: break-word;
+    max-height: 85vh; /* Set a maximum height for the container */
+    overflow-y: auto; 
   }
   
   .email-content p {

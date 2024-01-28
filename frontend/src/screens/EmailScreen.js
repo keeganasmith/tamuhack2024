@@ -23,11 +23,11 @@ const EmailScreen = ({ emails }) => {
     if (selectedEmail) {
       const fetchData = async () => {
         try {
-          // const response_sender = await axios.get(`https://phishnetasdf.onrender.com/api/scan_sender?email_address=${selectedEmail.from.slice(1, -1)}`)
-          // setSelectedSenderInfo(response_sender.data);
+          const response_sender = await axios.get(`https://phishnetasdf.onrender.com/api/scan_sender?email_address=${selectedEmail.from.slice(1, -1)}`)
+          setSelectedSenderInfo(response_sender.data);
 
-          // const response_content = await axios.post(`https://phishnetasdf.onrender.com/api/scan_email_content`, {content: selectedEmail.body})
-          // setSelectedContentInfo(response_content.data);
+          const response_content = await axios.post(`https://phishnetasdf.onrender.com/api/scan_email_content`, {content: selectedEmail.body})
+          setSelectedContentInfo(response_content.data);
 
           const response_url = await axios.post(`https://phishnetasdf.onrender.com/api/scan_urls`, {content: selectedEmail.body})
           console.log(response_url.data);
@@ -101,10 +101,8 @@ const EmailScreen = ({ emails }) => {
           <h3>Url Checker</h3>
           {selectedEmail ? (
           <div>
-            <h2>domain:</h2>
-            <h2>risk score (0 is lowest, 100 is highest): {selectedURLInfo && selectedURLInfo.risk_score}</h2>
-            <p>domain: {"link"}</p>
-            <p>risk score (0 is lowest, 100 is highest): {50}</p>
+            <p>domain:</p>
+            <p>risk score (0 is lowest, 100 is highest): {selectedURLInfo && selectedURLInfo.risk_score}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
