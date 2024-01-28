@@ -1,19 +1,28 @@
 // EmailList.js
 
 import React from 'react';
+import "../styles/EmailList.css";
 
-const EmailList = ({ emails }) => {
+const EmailList = ({ emails, selectedEmail, onEmailClick }) => {
   return (
-    <div>
-      <h2>Email List</h2>
-      <ul>
+    <div className="email-list-container">
+      <div className="email-list-tabs">
         {emails.map((email, index) => (
-          <li key={index}>{email}</li>
+          <button
+            key={index}
+            className={selectedEmail === email ? 'selected' : ''}
+            onClick={() => onEmailClick(email)}
+            style={{
+              backgroundColor: selectedEmail === email ? '#007BFF' : '#fff',
+              color: selectedEmail === email ? '#fff' : '#000',
+            }}
+          >
+            {email}
+          </button>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
 export default EmailList;
-

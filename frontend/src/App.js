@@ -1,23 +1,17 @@
-import EmailScreen from "./screens/EmailScreen"
-import './App.css';
-import GmailLogin from './components/gmail-login';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import EmailScreen from './screens/EmailScreen';
+import LoginScreen from './screens/LoginScreen';
 
-import { GoogleOAuthProvider } from '@react-oauth/google';
-
-function App() {
-  console.log("client: " + process.env.REACT_APP_CLIENT_ID);
+const App = () => {
   return (
-    <div>
-      <div className="App">
-        <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
-          <GmailLogin />
-        </GoogleOAuthProvider>
-      </div>
-      <div>
-        <EmailScreen/>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginScreen />} />
+        <Route path="/email" element={<EmailScreen />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
