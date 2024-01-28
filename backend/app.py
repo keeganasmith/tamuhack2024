@@ -8,18 +8,20 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 # Define routes
-@app.route('/')
-def index():
-    return 'Hello, World!'
-
-@app.route('/api/get_emails', methods=["POST", "OPTIONS"])
-def get_emails():
+@app.before_request
+def handle_preflight():
     if request.method == 'OPTIONS':
         response = jsonify({'status': 'success'})
         response.headers.add('Access-Control-Allow-Origin', '*')
         response.headers.add('Access-Control-Allow-Headers', '*')
         response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS')
         return response, 200
+@app.route('/')
+def index():
+    return 'Hello, World!'
+
+@app.route('/api/get_emails', methods=["POST", "OPTIONS"])
+def get_emails():
 
     try:
         info = request.json
