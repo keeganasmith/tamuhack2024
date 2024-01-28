@@ -1,5 +1,4 @@
 import GmailLogin from '../components/gmail-login';
-import LinkedInLogin from '../components/linkedin-login';
 import { useNavigate  } from 'react-router-dom';
 import "../styles/login.css"
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -17,9 +16,6 @@ const LoginScreen = ({ setEmails }) => {
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
               <GmailLogin navigation={history} setEmails={setEmails}/>
             </GoogleOAuthProvider>
-          </div>
-          <div className = "linkedin-container">
-            <LinkedInLogin />
           </div>
         </div>
     );
