@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLinkedIn } from 'react-linkedin-login-oauth2'
+import "../styles/login.css"
 
 function LinkedInLogin() {
 
@@ -20,7 +21,7 @@ function LinkedInLogin() {
     return (
         <div>
             <h1>Sign in w/ LinkedIn</h1>
-            <button onClick={handleLogin} className='bg-blue-500 text-white font-bold py-2 px-4 rounded-full shadow hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800'>Sign in w/ LinkedIn</button>
+            <button onClick={handleLogin} className='login-button'>Sign in w/ LinkedIn</button>
         </div>
     );
 }

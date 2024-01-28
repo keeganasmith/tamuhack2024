@@ -65,7 +65,7 @@ const EmailScreen = ({ emails }) => {
           {Array.isArray(emails) && emails.length > 0 && emails.map((email) => (
             <li key={email.id} onClick={() => handleEmailClick(email)}>
               <div>
-                <h4>from: {email.from}</h4>
+                <h3>from: {email.from}</h3>
                 <p>subject: {email.subject}</p>
               </div>
             </li>
@@ -79,17 +79,18 @@ const EmailScreen = ({ emails }) => {
             <p>{selectedEmail.body}</p>
           </div>
         ) : (
-          <p>Select an email to view its content.</p>
+          <p style={{ color: 'white'}}>Select an email to view its content.</p>
         )}
       </div>
 
       <div className="email-checker">
+        <h2>Phishing Report</h2>
         <section>
-          <h2>Sender Checker</h2>
+          <h3>Sender Checker</h3>
           {selectedEmail ? (
           <div>
-            <h2>sender: {selectedEmail.from}</h2>
-            <h2>fraud score (0 is lowest, 100 is highest): {selectedSenderInfo && selectedSenderInfo.fraud_score}</h2>
+            <p>sender: {selectedEmail.from}</p>
+            <p>fraud score (0 is lowest, 100 is highest): {selectedSenderInfo && selectedSenderInfo.fraud_score}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
@@ -97,11 +98,13 @@ const EmailScreen = ({ emails }) => {
         </section>
 
         <section>
-          <h2>Url Checker</h2>
+          <h3>Url Checker</h3>
           {selectedEmail ? (
           <div>
             <h2>domain:</h2>
             <h2>risk score (0 is lowest, 100 is highest): {selectedURLInfo && selectedURLInfo.risk_score}</h2>
+            <p>domain: {"link"}</p>
+            <p>risk score (0 is lowest, 100 is highest): {50}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
@@ -109,10 +112,10 @@ const EmailScreen = ({ emails }) => {
         </section>
 
         <section>
-          <h2>Content Checker</h2>
+          <h3>Content Checker</h3>
           {selectedEmail ? (
           <div>
-            <h2>email analyzer rating: {selectedContentInfo && selectedContentInfo}</h2>
+            <p>email analyzer rating: {selectedContentInfo && selectedContentInfo}</p>
           </div>
         ) : (
           <p>Select an email to analyze.</p>
