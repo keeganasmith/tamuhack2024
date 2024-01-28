@@ -1,10 +1,3 @@
-<<<<<<< HEAD:frontend/src/index.css
-=======
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
->>>>>>> 47ded0e31e9194084eb1e21ad0284377c490967a:frontend/src/styles/index.css
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

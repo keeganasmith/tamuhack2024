@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import logo from './logo.svg';
 import './App.css';
 
@@ -24,22 +23,3 @@ function App() {
 }
 
 export default App;
-=======
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import EmailScreen from './screens/EmailScreen';
-import LoginScreen from './screens/LoginScreen';
-
-const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginScreen />} />
-        <Route path="/email" element={<EmailScreen />} />
-      </Routes>
-    </Router>
-  );
-};
-
-export default App;
->>>>>>> 47ded0e31e9194084eb1e21ad0284377c490967a

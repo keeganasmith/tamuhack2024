@@ -2,7 +2,6 @@ from flask import Flask
 from flask import request
 from google_client.google_class import Google_Class
 import traceback
-
 # Create an instance of Flask
 app = Flask(__name__)
 
@@ -23,6 +22,5 @@ def get_emails():
         traceback.print_exc()
         print(e)
         return "bad", 500
-# Run the app
 if __name__ == '__main__':
     app.run(debug=True)
