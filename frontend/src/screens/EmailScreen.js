@@ -23,10 +23,10 @@ const EmailScreen = ({ emails }) => {
       const fetchData = async () => {
         try {
           //const response_link = await axios.get(`https://phishnetasdf.onrender.com/api/scan_url/${selectedEmail.link....}`);
-          const response_sender = await axios.get(`https://phishnetasdf.onrender.com/api/scan_sender/${selectedEmail.from.slice(1, -1)}`)
+          const response_sender = await axios.get(`https://phishnetasdf.onrender.com/api/scan_sender?email_address=${selectedEmail.from.slice(1, -1)}`)
           setSelectedSenderInfo(response_sender.data);
 
-          const response_content = await axios.get(`https://phishnetasdf.onrender.com/api/scan_email_content/${selectedEmail.body}`)
+          const response_content = await axios.post(`https://phishnetasdf.onrender.com/api/scan_email_content`, {content: selectedEmail.body})
           setSelectedContentInfo(response_content.data);
         } catch (error) {
           console.error('Error fetching data:', error);

@@ -1,5 +1,4 @@
-from flask import Flask, jsonify
-from flask import request
+from flask import Flask, jsonify, request
 from google_client.google_class import Google_Class
 import traceback
 from flask_cors import CORS
@@ -22,6 +21,23 @@ def handle_preflight():
 def index():
     return 'Hello, World!'
 
+@app.route('/api/scan_sender', methods=["GET"])
+def scan_sender():
+    email_address = request.args.get('email_address')
+    return email_address_scan(email_address)
+
+@app.route('/api/scan_url', methods=["GET"])
+def scan_url():
+    url = request.args.get('url')
+
+    return url_scan(url)
+
+
+@app.route('/api/scan_email_content', methods=["POST"])
+def scan_email_content():
+    data_from_json = request.get_json()
+    return email_content_scan(data_from_json.content)
+
 @app.route('/api/get_emails', methods=["POST", "OPTIONS"])
 def get_emails():
 
@@ -35,17 +51,11 @@ def get_emails():
         traceback.print_exc()
         print(e)
         return "bad", 500
+    
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-@app.route('/api/scan_url/<url>', methods=["GET"])
-def scan_url(url):
-    return url_scan(url)
-
-@app.route('/api/scan_sender/<email_address>', methods=["GET"])
-def scan_sender(email_address):
-    return email_address_scan(email_address)
-
-@app.route('/api/scan_email_content/<email>', methods=["GET"])
-def scan_email_content(email):
-    return email_content_scan(email)

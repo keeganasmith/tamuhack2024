@@ -33,9 +33,9 @@ def email_address_scan(email_address): # responds with a json containing informa
 
     response = requests.get(url)
 
-
     if response.status_code == 200:
         response = response.json()
+        print(response)
         email_address_info = {
             "sanitized_email": response["sanitized_email"],
             "valid": response["valid"],
@@ -64,3 +64,4 @@ def email_content_scan(content): # returns either Phishing attempt or Legitimate
     print(completion.choices[0].message)
     return completion.choices[0].message
 
+email_address_scan("notifications@instructure.com")
