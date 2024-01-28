@@ -30,7 +30,6 @@ const EmailScreen = ({ emails }) => {
           setSelectedContentInfo(response_content.data);
 
           const response_url = await axios.post(`https://phishnetasdf.onrender.com/api/scan_urls`, {content: selectedEmail.body})
-          console.log(response_url.data);
           setSelectedURLInfo(response_url.data);
 
 
@@ -91,7 +90,7 @@ const EmailScreen = ({ emails }) => {
           <div>
             <p>Sender: {selectedEmail.from}</p>
             <p>Fraud Score (0 is lowest, 100 is highest): {selectedSenderInfo && selectedSenderInfo.fraud_score}</p>
-            <p>Leaked in database breach?: {selectedSenderInfo && selectedSenderInfo.leaked}</p>
+            {/* <p>Leaked in database breach?: {selectedSenderInfo && selectedSenderInfo.leaked}</p> */}
           </div>
         ) : (
           <p>Select an email to analyze.</p>
