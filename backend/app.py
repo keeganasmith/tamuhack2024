@@ -26,20 +26,17 @@ def scan_sender():
     email_address = request.args.get('email_address')
     return email_address_scan(email_address)
 
-@app.route('/api/scan_url', methods=["GET"])
+@app.route('/api/scan_urls', methods=["POST"])
 def scan_url():
-    url = request.args.get('url')
+    data_from_json = request.get_json()
 
-    return url_scan(url)
+    return url_scan(data_from_json['content'])
 
 
 @app.route('/api/scan_email_content', methods=["POST"])
 def scan_email_content():
     data_from_json = request.get_json()
-    print(data_from_json)
-    thing = email_content_scan(data_from_json['content'])
-    print(thing)
-    return thing
+    return email_content_scan(data_from_json['content'])
 
 @app.route('/api/get_emails', methods=["POST", "OPTIONS"])
 def get_emails():

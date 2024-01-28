@@ -1,4 +1,5 @@
 import requests
+import re
 from openai import OpenAI
 
 from dotenv import load_dotenv
@@ -7,13 +8,21 @@ import os
 load_dotenv()
 
 
-def url_scan(website_url): #responds with a json containing information about given url
-    url = f"https://www.ipqualityscore.com/api/json/url/{os.getenv('IPQUALITYSCORE_KEY')}/{website_url}"
+def url_scan(content): #responds with a json containing information about given url
+
+    url_list = re.findall("(?P<url>https?://[^\s'\"]+)", content)
+
+    if len(url_list) < 1:
+        return "No links in email"
+    url_list[0] = url_list[0].replace("https://", "").replace("http://", "")
+    url = f"https://www.ipqualityscore.com/api/json/url/{os.getenv('IPQUALITYSCORE_KEY')}/{url_list[0]}"
+    print(url)
 
     response = requests.get(url)
 
     if response.status_code == 200:
         response = response.json()
+        print(response)
         link_info = {
             "domain": response["domain"],
             "unsafe": response["unsafe"],
@@ -26,7 +35,7 @@ def url_scan(website_url): #responds with a json containing information about gi
         }
         return link_info
     else:
-        return response.status_code
+        return "Links were unable to be read"
 
 def email_address_scan(email_address): # responds with a json containing information about given email address
     url = f"https://www.ipqualityscore.com/api/json/email/{os.getenv('IPQUALITYSCORE_KEY')}/{email_address}"
@@ -62,3 +71,5 @@ def email_content_scan(content): # returns either Phishing attempt or Legitimate
     )
 
     return completion.choices[0].message.content
+
+print(url_scan("https://google.com"))
