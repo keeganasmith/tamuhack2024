@@ -26,7 +26,9 @@ const EmailScreen = ({ emails }) => {
           const response_sender = await axios.get(`https://phishnetasdf.onrender.com/api/scan_sender?email_address=${selectedEmail.from.slice(1, -1)}`)
           setSelectedSenderInfo(response_sender.data);
 
+          //const response_content = await axios.post(`https://phishnetasdf.onrender.com/api/scan_email_content`, {content: selectedEmail.body})
           const response_content = await axios.post(`https://phishnetasdf.onrender.com/api/scan_email_content`, {content: selectedEmail.body})
+          console.log(response_content.data);
           setSelectedContentInfo(response_content.data);
         } catch (error) {
           console.error('Error fetching data:', error);
@@ -106,7 +108,7 @@ const EmailScreen = ({ emails }) => {
           <h2>Content Checker</h2>
           {selectedEmail ? (
           <div>
-            <h2>email analyzer rating: {selectedContentInfo && selectedContentInfo.data}</h2>
+            <h2>email analyzer rating: {selectedContentInfo && selectedContentInfo}</h2>
           </div>
         ) : (
           <p>Select an email to analyze.</p>

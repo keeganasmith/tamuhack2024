@@ -52,7 +52,7 @@ def email_address_scan(email_address): # responds with a json containing informa
 
 def email_content_scan(content): # returns either Phishing attempt or Legitimate email after scanning email
     client = OpenAI()
-
+    print(content)
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
