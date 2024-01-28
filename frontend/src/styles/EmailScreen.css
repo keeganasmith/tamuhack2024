@@ -1,0 +1,110 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.email-screen {
+    display: flex;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+    background-color: #883985;
+  }
+  
+  .sign-out-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .sign-out-button button {
+    background-color: #f3a69c;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sign-out-button button:hover {
+    background-color: #0056b3;
+  }
+  
+  .email-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100vh;
+    background-color: #642a62;
+
+  }
+  
+  .email-list h2 {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .email-list h3 {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .email-list ul {
+    list-style-type: none;
+    background-color: #642a62;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Make the list fill the remaining space */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+  }
+
+  .email-list p {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 15px;
+  }
+  
+  .email-list li {
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px; /* Increased padding to make each email taller */
+    transition: background-color 0.3s;
+    background-color: #d45c7e;
+  }
+  
+  .email-list li:hover {
+    background-color: #C8355F;
+  }
+  
+  .email-content {
+    flex: 2;
+    padding: 20px;
+    margin-top: 30px; /* Add margin-top to lower the email content */
+  }
+  
+  .email-content h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .email-content div {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .email-content p {
+    color: #555;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  

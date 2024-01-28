@@ -4,11 +4,16 @@ from time import sleep
 from google.oauth2.credentials import Credentials
 import requests
 import base64
-import re
 import email
+from dotenv import load_dotenv
+import os
 LIMIT = 20
-REDIRECT_URI = "https://localhost:3000"
-def exchange_auth_code_for_access_token(auth_code, client_id, client_secret, redirect_uri):
+REDIRECT_URI = "http://localhost:3000"
+load_dotenv()
+
+client_id = os.getenv("CLIENT_ID")
+client_secret = os.getenv("CLIENT_SECRET")
+def exchange_auth_code_for_access_token(auth_code):
     token_endpoint = "https://oauth2.googleapis.com/token"
     payload = {
         "client_id": client_id,
@@ -17,6 +22,7 @@ def exchange_auth_code_for_access_token(auth_code, client_id, client_secret, red
         "redirect_uri": REDIRECT_URI,
         "grant_type": "authorization_code"
     }
+    print(payload)
     response = requests.post(token_endpoint, data=payload)
     if response.status_code == 200:
         return response.json()["access_token"]
@@ -25,11 +31,12 @@ def exchange_auth_code_for_access_token(auth_code, client_id, client_secret, red
         print(response.text)
         return None
 class Google_Class:
-    def __init__(self, auth_token = None, token = None):
+    def __init__(self, token = None, auth_token = None):
         if(auth_token):
             self.token = exchange_auth_code_for_access_token(auth_code=auth_token)
         else:
-            self.token = token;
+            self.token = token
+        
         self.user_id = None;
         self.service = None;
         self.credentials = None;
@@ -72,9 +79,7 @@ class Google_Class:
                 decoded_message = raw_message.decode('utf-8', errors="ignore")
                 msg = email.message_from_string(decoded_message)
                 sent_from = msg["from"]
-                print("got here1")
                 html_content = self.get_html_content(msg)
-                print("got here2")
                 return html_content
             else:
                 print(f"Error: {response.status_code} - {response.text}")

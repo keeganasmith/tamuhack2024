@@ -14,8 +14,8 @@ def index():
 def get_emails():
     try:
         info = request.json
-        auth_token = info.get("auth_token", "")
-        google_client = Google_Class(auth_token = auth_token)
+        auth_token = info.get("token", "")
+        google_client = Google_Class(token = auth_token)
         result = google_client.get_email_htmls()
         return result, 200
     except Exception as e:
