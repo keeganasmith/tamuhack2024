@@ -5,6 +5,7 @@ from google.oauth2.credentials import Credentials
 import requests
 import base64
 import email
+import re
 from dotenv import load_dotenv
 import os
 LIMIT = 20
@@ -45,12 +46,22 @@ class Google_Class:
         self.set_service()
     def set_credentials(self):
         self.credentials = Credentials(self.token)
-    def get_html_content(self, msg):
+    def get_html_content(self, msg, default_charset='utf-8') :
         html_content = ""
         for part in msg.walk():
-            if part.get_content_type() == "text/html":
-                html_content = part.get_payload(decode=True).decode(part.get_content_charset(), errors='ignore')
-                return html_content
+            if part.get_content_type() == "text/plain":
+                charset = part.get_content_charset() or default_charset
+                try:
+                    # Decode the payload explicitly, replace unrecognized characters
+                    plaintext_content = part.get_payload(decode=True).decode(charset, 'replace')
+                    # Remove or replace any special characters as needed
+                    plaintext_content = plaintext_content.replace('\r\n', ' ')
+                    # Optionally, remove HTML tags if present
+                    plaintext_content = re.sub(r'<[^>]+>', '', plaintext_content)
+                    return plaintext_content
+                except UnicodeDecodeError:
+                    # Handle decoding errors
+                    return "Failed to decode content"
         return ""
     def set_service(self):
         self.service = build('gmail', 'v1', credentials=self.credentials)
@@ -78,9 +89,15 @@ class Google_Class:
                 # Decode the bytes to string using utf-8 encoding
                 decoded_message = raw_message.decode('utf-8', errors="ignore")
                 msg = email.message_from_string(decoded_message)
-                sent_from = msg["from"]
+                sent_from = msg["From"].split(" ")
+                result_from = "";
+                for string in sent_from:
+                    if "@" in string:
+                        result_from = string
+                        break
+                subject = msg["Subject"]
                 html_content = self.get_html_content(msg)
-                return html_content
+                return {"subject":subject, "body":html_content, "from": result_from, "id": message_id}
             else:
                 print(f"Error: {response.status_code} - {response.text}")
                 return None
