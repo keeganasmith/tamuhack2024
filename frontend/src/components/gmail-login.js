@@ -9,14 +9,14 @@ function GmailLogin( setUser ) {
         onSuccess: (code) => {
             console.log("Login: ", code); // to debug
 
-            axios.post() // once the api endpoint is created, send auth code to flask server
-            .then(res => res.data.token) // depending on json, may need to redo
+            axios.post("https://phishnetasdf.onrender.com/api/get_emails/", {"token" : code.access_token}) // once the api endpoint is created, send auth code to flask server
             history("/email");
         },
         onError: () => {
             console.error();
         },
-        flow: 'implicit'
+        flow: 'implicit',
+        scope: "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/gmail.readonly"
     });
 
     return (
