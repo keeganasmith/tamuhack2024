@@ -1,0 +1,51 @@
+.login-button {
+    background-color: #f3a69c; /* Blue-500 */
+    color: #fff; /* White text color */
+    font-weight: bold;
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+    border-radius: 999px; /* rounded-full (use a large value for a full circle) */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow */
+    transition: background-color 0.3s; /* hover effect */
+    outline: none; /* focus:outline-none */
+  }
+  
+  .login-button:hover {
+    background-color: #ED7D6F; /* hover:bg-blue-600 */
+  }
+  
+  .login-button:focus,
+  .login-button:active {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* focus:shadow-outline-blue */
+  }
+  
+  /* Active state */
+  .login-button:active {
+    background-color: #004080; /* active:bg-blue-800 */
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 60vh; /* Adjust the height based on your preference */
+  }
+
+  .login-container {
+    background-color: #883985;
+    height: 100vh;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
